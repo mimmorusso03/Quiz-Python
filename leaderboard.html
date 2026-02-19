@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="text-align: center;">
+    <h2 style="color: var(--accent-primary); text-transform: uppercase; letter-spacing: 2px;">🏆 Hall of Fame</h2>
+    <p>I migliori programmatori della community</p>
+    
+    <table style="margin-top: 30px;">
+        <thead>
+            <tr>
+                <th>Posizione</th>
+                <th>Nickname</th>
+                <th>Punteggio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ loop.index }}°</td>
+                <td style="font-weight: bold; color: var(--accent-secondary);">{{ user.nickname }}</td>
+                <td><span style="color: var(--success);">{{ user.score }}</span> pts</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">Nessun giocatore ancora in classifica. Sii il primo!</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div style="margin-top: 30px;">
+        <a href="/quiz"><button>Sfida i migliori</button></a>
+    </div>
+</div>
+{% endblock %}

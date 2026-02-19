@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth-container">
+    <h2>Crea il tuo Account</h2>
+    <p>Unisciti alla community dei pro di Python!</p>
+    
+    <form method="POST" action="/register">
+        <label>Username (Login unico):</label>
+        <input type="text" name="username" placeholder="Scegli un nome utente" required>
+        
+        <label>Nickname (Visibile in classifica):</label>
+        <input type="text" name="nickname" placeholder="Il tuo nome pubblico" required>
+        
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="Inserisci password" required>
+        
+        <label>Conferma Password:</label>
+        <input type="password" name="confirm_password" placeholder="Ripeti password" required>
+        
+        <button type="submit">Registrati ora</button>
+    </form>
+    
+    <p style="margin-top: 20px;">Hai già un account? <a href="/login" style="color: var(--accent-primary);">Accedi qui</a></p>
+</div>
+{% endblock %}

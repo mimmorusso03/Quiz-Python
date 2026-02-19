@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>AI Quiz Pro</title>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        {% if 'user_id' in session %}
+            <a href="/quiz">Quiz</a>
+            <a href="/leaderboard">Classifica</a>
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+            <a href="/register">Registrazione</a>
+        {% endif %}
+    </nav>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div style="padding: 15px; margin-bottom: 20px; border-radius: 10px; text-align: center; backdrop-filter: blur(5px); color: white; border: 1px solid;
+          {% if category == 'error' %}
+            background-color: rgba(255, 0, 0, 0.2); border-color: #ff4d4d;
+          {% else %}
+            background-color: rgba(0, 255, 136, 0.2); border-color: #00ff88;
+          {% endif %}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        Sviluppato da: Mimmo Russo
+    </footer>
+</body>
+</html>

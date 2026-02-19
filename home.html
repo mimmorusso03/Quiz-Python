@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Meteo e Benvenuto</h2>
+
+<form method="GET" action="/">
+    <input type="text" name="city" placeholder="Inserisci città..." required>
+    <button type="submit">Cerca</button>
+</form>
+
+{% if weather %}
+    <h3>Previsioni per {{ weather.city.name }}</h3>
+    <table border="1" style="width:100%; margin-top:20px; text-align:center;">
+        <tr style="background-color: #f2f2f2;">
+            <th>Data e Ora</th>
+            <th>Temperatura (°C)</th>
+            <th>Condizioni</th>
+        </tr>
+        {# Prendiamo i dati ogni 8 posizioni per avere intervalli di circa 24 ore #}
+        {% for forecast in weather.list[::8][:3] %}
+        <tr>
+            <td>{{ forecast.dt_txt }}</td>
+            <td>{{ forecast.main.temp }}°C</td>
+            <td>{{ forecast.weather[0].description }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% elif request.args.get('city') %}
+    <p style="color:red;">Città non trovata o errore nell'API. Riprova!</p>
+{% endif %}
+{% endblock %}

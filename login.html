@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth-container">
+    <h2>Bentornato!</h2>
+    <p>Inserisci le tue credenziali per iniziare il quiz.</p>
+    
+    <form method="POST" action="/login">
+        <label>Username:</label>
+        <input type="text" name="username" placeholder="Il tuo login" required>
+        
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="La tua password" required>
+        
+        <button type="submit">Entra nel sistema</button>
+    </form>
+    
+    <p style="margin-top: 20px;">Nuovo utente? <a href="/register" style="color: var(--accent-secondary);">Crea un account</a></p>
+</div>
+{% endblock %}

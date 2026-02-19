@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Il Tuo Punteggio Totale: {{ current_user_score }}</h3>
+<p>{{ q.q }}</p>
+<form action="/check_answer" method="POST">
+    <input type="hidden" name="correct" value="{{ q.c }}">
+    {% for option in q.a %}
+        <input type="radio" name="answer" value="{{ option }}" required> {{ option }}<br>
+    {% endfor %}
+    <br>
+    <button type="submit">Invia Risposta</button>
+</form>
+{% endblock %}
